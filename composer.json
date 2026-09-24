@@ -1,0 +1,36 @@
+{
+    "name": "rocket-mailer/rocket-mailer-bundle",
+    "description": "Symfony bundle for applications using Rocket Mailer: embed token endpoint, API client (send, templates, attachments) and a Twig helper for the composer.",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.2",
+        "symfony/framework-bundle": "^6.4 || ^7.0 || ^8.0",
+        "symfony/http-client": "^6.4 || ^7.0 || ^8.0",
+        "symfony/mime": "^6.4 || ^7.0 || ^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0 || ^12.0 || ^13.0",
+        "symfony/security-bundle": "^6.4 || ^7.0 || ^8.0",
+        "symfony/twig-bundle": "^6.4 || ^7.0 || ^8.0",
+        "symfony/yaml": "^6.4 || ^7.0 || ^8.0",
+        "twig/twig": "^3.0"
+    },
+    "suggest": {
+        "symfony/security-bundle": "The token endpoint acts as the logged-in user",
+        "symfony/twig-bundle": "rocket_mailer_composer() Twig function"
+    },
+    "autoload": {
+        "psr-4": {
+            "RocketMailer\\Bundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RocketMailer\\Bundle\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

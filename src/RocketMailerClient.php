@@ -35,15 +35,19 @@ class RocketMailerClient
      * Sends an email without the composer.
      *
      * @param array{
-     *     to: list<string>, cc?: list<string>, bcc?: list<string>, from?: string,
+     *     to: list<string>, cc?: list<string>, bcc?: list<string>, from?: string, mailbox?: string,
      *     subject?: string, htmlBody?: string,
      *     template?: string, variables?: array<mixed>, attachments?: list<string>,
-     * } $email template: id or IRI (subject and htmlBody then default to the template's); attachments: ids or IRIs
+     * } $email template: id or IRI (subject and htmlBody then default to the template's); attachments: ids or IRIs;
+     *   mailbox: id or IRI of a sending mailbox attached to the application (its SMTP server, copy in its "Sent" folder)
      *
      * @return array<string, mixed> the queued email (id, status, subject…)
      */
     public function sendEmail(string $asUser, array $email): array
     {
+        if (isset($email['mailbox'])) {
+            $email['mailbox'] = self::iri('mailboxes', $email['mailbox']);
+        }
         if (isset($email['template'])) {
             $email['template'] = self::iri('email_templates', $email['template']);
         }

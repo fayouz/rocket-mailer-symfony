@@ -53,6 +53,7 @@ final class RocketMailerClientTest extends TestCase
             ->sendEmail('alice@example.org', [
                 'to' => ['claire@client.example'],
                 'template' => '0199-tpl',
+                'mailbox' => '0199-box',
                 'variables' => ['client' => ['prenom' => 'Claire']],
                 'attachments' => ['0199-att', '/api/attachments/0199-other'],
             ]);
@@ -60,6 +61,7 @@ final class RocketMailerClientTest extends TestCase
         self::assertSame('queued', $email['status']);
         $body = json_decode($this->requests[0]['options']['body'], true);
         self::assertSame('/api/email_templates/0199-tpl', $body['template']);
+        self::assertSame('/api/mailboxes/0199-box', $body['mailbox']);
         self::assertSame(['/api/attachments/0199-att', '/api/attachments/0199-other'], $body['attachments']);
         self::assertSame(['client' => ['prenom' => 'Claire']], $body['variables']);
     }
